@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test js</title>
+    <style>
+      body {
+        height: 200vh;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        position: relative;
+        width: 390px;
+        height: 130px;
+        margin: auto;
+      }
+      .prev {
+        cursor: pointer;
+        border: 1px solid #eaeaea;
+        border-radius: 3px;
+        outline: none;
+        padding: 4px 15px;
+        position: absolute;
+        left: -70px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .next {
+        cursor: pointer;
+        border: 1px solid #eaeaea;
+        border-radius: 3px;
+        outline: none;
+        padding: 4px 15px;
+        position: absolute;
+        right: -70px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      ul {
+        width: 9999px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        transition: 0.5s;
+      }
+      .carousel {
+        overflow: hidden;
+      }
+      li {
+        float: left;
+      }
+      img {
+        width: 130px;
+        height: 130px;
+      }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <button class="prev">Prev</button>
+    <div class="carousel">
+      <ul>
+        <li>
+          <img src="https://www.exults.com/wp-content/uploads/2014/08/google-img.png" alt="">
+        </li>
+        <li>
+          <img src="https://www.exults.com/wp-content/uploads/2014/08/google-img.png" alt="">
+        </li>
+        <li>
+          <img src="https://www.exults.com/wp-content/uploads/2014/08/google-img.png" alt="">
+        </li>
+        <li>
+          <img src="https://www.exults.com/wp-content/uploads/2014/08/google-img.png" alt="">
+        </li>
+        <li>
+          <img src="https://www.exults.com/wp-content/uploads/2014/08/google-img.png" alt="">
+        </li>
+        <li>
+          <img src="https://www.exults.com/wp-content/uploads/2014/08/google-img.png" alt="">
+        </li>
+        <li>
+            <img src="https://www.exults.com/wp-content/uploads/2014/08/google-img.png" alt="">
+        </li>
+        <li>
+          <img src="https://www.exults.com/wp-content/uploads/2014/08/google-img.png" alt="">
+        </li>
+        <li>
+          <img src="https://www.exults.com/wp-content/uploads/2014/08/google-img.png" alt="">
+        </li>
+        <li>
+          <img src="https://www.exults.com/wp-content/uploads/2014/08/google-img.png" alt="">
+        </li>
+      </ul>
+    </div>
+    <button class="next">Next</button>
+  </div>
+  <script>
+
+    var prev = document.querySelector('.prev');
+    var next = document.querySelector('.next');
+    function carousel() {
+      var ul = document.querySelector('ul');
+      var ulStyle = getComputedStyle(ul);
+      var li = document.querySelector('li');
+      var allList = document.querySelectorAll('li');
+      var width = 130;
+      var itemList = 3;
+      ul.style.marginLeft = ulStyle.marginLeft;
+        if (this.classList.contains('prev')) {
+          ul.style.marginLeft = Math.min(parseInt(ul.style.marginLeft) + 390, 0) + 'px';
+        } else if (this.classList.contains('next')) {
+          ul.style.marginLeft = Math.max(parseInt(ul.style.marginLeft) - 390, -width * (allList.length - itemList) ) + 'px';
+      }
+    }
+    prev.addEventListener('click', carousel);
+    next.addEventListener('click', carousel);
+  
+  </script>
+</body>
+</html>
