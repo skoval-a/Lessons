@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      #block {
+        width: 100px;
+        height: 100px;
+        background: red;
+      }
+    </style>
+</head>
+<body>
+    <div class="block">
+        <p>
+            Верхний левый угол
+            <input type="range" class="q1 rtl" min="0" max="100">
+            <input type="text" class="textTopLeft" value="0">
+        </p>
+        <p>
+            Верхний правый угол
+            <input type="range" class="q1 rtr" min="0" max="100">
+            <input type="text" class="textTopRight" value="0">
+        </p>
+        <p>
+            Нижний правый угол
+            <input type="range" class="q1 rbr" min="0" max="100">
+            <input type="text" class="textBottomRight" value="0">
+        </p>
+        <p>
+          Нижний левый угол
+          <input type="range" class="q1 rbl" min="0" max="100">
+          <input type="text" class="textBottomLeft" value="0">
+        </p>
+    </div>
+    <div id="block"></div>
+    <script>
+      var input1 = document.querySelector('.rtl');
+      var input2 = document.querySelector('.rtr');
+      var input3 = document.querySelector('.rbr');
+      var input3 = document.querySelector('.rbl');
+      var inputs = document.querySelectorAll('.q1');
+      var block = document.getElementById('block');
+      var textTopLeft =  document.querySelector('.textTopLeft');
+      var textTopRight=  document.querySelector('.textTopRight');
+      var textBottomRight =  document.querySelector('.textBottomRight');
+      var textBottomLeft=  document.querySelector('.textBottomLeft');
+     
+     for(var i = 0; i < inputs.length; i++) {
+      inputs[i].oninput = function() {
+        switch (this.className) {
+          case 'q1 rtl': textTopLeft.value = this.value; break;
+          case 'q1 rtr': textTopRight.value = this.value; break;
+          case 'q1 rbr': textBottomRight.value = this.value; break;
+          case 'q1 rbl': textBottomLeft.value = this.value; break;
+          default: break;
+        }
+        var result = block.style.borderRadius = textTopLeft.value + 'px ' + textTopRight.value + 'px ' + textBottomRight.value  + 'px ' + textBottomLeft.value + 'px ';
+        console.log(result);
+      }
+     }
+      
+     
+    </script>
+</body>
+</html>

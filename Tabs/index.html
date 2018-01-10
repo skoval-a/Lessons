@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .tab_nav {
+          display: flex;
+          align-content: center;
+        }
+        .tab_nav a {
+          padding: 10px 15px;
+          border-radius: 3px;
+          outline: none;
+          display: block;
+          border: 1px solid #eaeaea;
+          font-size: 16px;
+          text-decoration: none;
+          margin-left: 15px;
+          color: black;
+        }
+        .tab_nav a.active {
+          background: black;
+          color: #fff;
+        }
+        .tab_nav a:first-child {
+          margin-left: 0;
+        }
+        .tabContent {
+          padding: 15px 0;
+        }
+        .tabItem {
+          display: none;
+        }
+        .tabItem.show {
+          display: block;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="tab_nav">
+      <a href="#" class="item_nav active">Nav1</a>
+      <a href="#" class="item_nav ">Nav2</a>
+      <a href="#" class="item_nav">Nav3</a>
+    </div>
+    <div class="tabContent">
+      <div class="tabItem show">
+          Tab Content 1
+      </div>
+      <div class="tabItem">
+          Tab Content 2
+      </div>
+      <div class="tabItem">
+          Tab Content 3
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  // var navItem = $('.tab_nav a');
+  // var tabItem= $('.tabItem');
+
+  // $(navItem).on('click', function() {
+  //   if (!$(this).hasClass('active')) {
+  //     var i = $(this).index();
+  //     navItem.removeClass('active');
+  //     $(this).addClass("active");
+  //     tabItem.hide('show');
+  //     $(tabItem[i]).show('show');
+  //   }
+  // });
+
+  var navItem = document.querySelectorAll('.tab_nav a');
+  var tabItem= document.querySelectorAll('.tabItem');
+
+  hideTabContent(1);
+
+  function hideTabContent (a) {
+    for(var i = a; i < tabItem.length; i++) {
+      tabItem[i].classList.remove('show');
+      navItem[i].classList.remove('active');
+    }
+  }
+
+document.querySelector('.tab_nav').onclick = function(e) {
+  var target = e.target;
+  for(var i = 0; i < navItem.length; i++) {
+    if (target == navItem[i]) {
+      showContent(i);
+    }
+  }
+}
+
+function showContent(index) {
+  hideTabContent(0);
+  tabItem[index].classList.add('show');
+  navItem[index].classList.add('active');
+}
+</script>
+</html>
