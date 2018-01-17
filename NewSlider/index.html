@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      .container {
+        position: relative;
+        max-width: 700px;
+        margin: auto;
+      }
+      .wrapSlide {
+        min-height: 560px;
+      }
+      @keyframes fade {
+        from {
+          opacity: .4;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .itemSlide {
+        animation: fade;
+        animation-duration: 1.5s;
+      }
+      img {
+        max-width: 100%;
+      }
+      .dots {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        display: flex;
+        align-content: center;
+      }
+      .dots .itemDot {
+        width: 20px;
+        height: 20px;
+        outline: none;
+        border-radius: 50%;
+        margin-left: 10px;
+      }
+      .navigation button {
+        cursor: pointer;
+        outline: none;
+        margin-right: 10px;
+        font-size: 16px;
+        border-radius: 3px;
+        border: 1px solid #eaeaea;
+        padding: 12px 25px;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div class="wrapSlide">
+        <div class="itemSlide">
+          <p class="status">1/3</p>
+          <img src="https://cs9.pikabu.ru/post_img/big/2016/11/29/10/1480439590135196859.jpg" alt="image 1">
+          <p class="text">Lorem Ipsum - це текст-"риба", що використовується в друкарстві та дизайні. Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя, коли невідомий друкар взяв шрифтову гранку та склав на ній підбірку зразків шрифтів. </p>
+        </div>
+        <div class="itemSlide">
+          <p class="status">2/3</p>
+          <img src="https://cs8.pikabu.ru/post_img/big/2016/11/29/10/1480439569193232018.jpg" alt="image 1">
+          <p class="text">Lorem Ipsum - це текст-"риба", що використовується в друкарстві та дизайні. Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя, коли невідомий друкар взяв шрифтову гранку та склав на ній підбірку зразків шрифтів. </p>
+        </div>
+        <div class="itemSlide">
+          <p class="status">3/3</p>
+          <img src="http://goodimg.ru/img/oboi-dlya-stola-1920h10805.jpg" alt="image 1">
+          <p class="text">Lorem Ipsum - це текст-"риба", що використовується в друкарстві та дизайні. Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя, коли невідомий друкар взяв шрифтову гранку та склав на ній підбірку зразків шрифтів. </p>
+        </div>
+      </div>
+      <div class="navigation">
+        <button class="prev">Prev</button>
+        <button class="pause">Pause</button>
+        <button class="start">Start</button>
+        <button class="next">Next</button>
+      </div>
+      <div class="dots">
+        <button class='itemDot'></button>
+        <button class='itemDot'></button>
+        <button class='itemDot'></button>
+      </div>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var indexSlide = 1;
+  var timer;
+  showSlide(indexSlide);
+  startSlide();
+
+  var pauseBtn = document.querySelector('.pause');
+  var startBtn = document.querySelector('.start')
+  document.querySelector('.prev').addEventListener('click', () => showNext(-1));
+  document.querySelector('.next').addEventListener('click', () => showNext(1));
+  var dots = document.querySelectorAll('.itemDot');
+
+  for(let i = 0; i < dots.length; i++ ) {
+    dots[i].addEventListener('click', function(e) {
+      currentSlide(i + 1);
+    });
+  }
+
+  pauseBtn.addEventListener('click', function() {
+    clearInterval(timer);
+  });
+
+  startBtn.addEventListener('click', function() {
+    startSlide();
+  });
+
+  function startSlide() {
+    timer = setInterval(() => {
+      showNext(1);
+   }, 2000);
+  }
+
+  function currentSlide(n) {
+    showSlide(indexSlide = n);
+  }
+
+  function showNext(n) {
+    showSlide(indexSlide += n);
+  }
+
+  function showSlide(n) {
+    var i;
+    var slides = document.querySelectorAll('.itemSlide');
+    if (n > slides.length) {
+      indexSlide = 1;
+    }
+    if (n < 1) {
+      indexSlide = slides.length;
+    }
+    for (i = 0; i < slides.length; i++ ) {
+      slides[i].style.display = 'none';
+    }
+    slides[indexSlide - 1].style.display = 'block';
+  }
+</script>
+</html>Z
